@@ -96,36 +96,36 @@ class COMP_6721_CNN(nn.Module):
     
     def __init__(self):
         super(COMP_6721_CNN, self).__init__()
-        self.network = nn.Sequential(
-          nn.Conv2d(3, 100, kernel_size=3, padding=1),
-          nn.BatchNorm2d(100),
-          nn.ReLU(inplace=True),
-          nn.Conv2d(100, 128, kernel_size=3, stride=1, padding=1),
-          nn.BatchNorm2d(128),
-          nn.ReLU(inplace=True),
-          nn.MaxPool2d(2, 2),  # output: 128 x 8 x 8
-          nn.Dropout2d(p=0.05),
+        self.cnn_layers = nn.Sequential(
+            # convolution layer 1
+            nn.Conv2d(3, 32, kernel_size=3, stride=1, padding=1),
+            nn.BatchNorm2d(32),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=2, stride=2),
 
-          nn.Conv2d(128, 256, kernel_size=3, stride=1, padding=1),
-          nn.BatchNorm2d(256),
-          nn.ReLU(inplace=True),
-          nn.Conv2d(256, 512, kernel_size=3, stride=1, padding=1),
-          nn.BatchNorm2d(512),
-          nn.ReLU(inplace=True),
-          nn.MaxPool2d(2, 2),  # output: 512 x 25 x 25
-          nn.Dropout2d(p=0.05),
+            # convolution layer 2
+            nn.Conv2d(32, 128, kernel_size=3, stride=1, padding=1),
+            nn.BatchNorm2d(128),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=2, stride=2),
+            
+            # convolution layer 3
+            nn.Conv2d(128, 256, kernel_size=3, stride=1, padding=1),
+            nn.BatchNorm2d(256),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=2, stride=2)
+        )
+        
+        self.linear_layers = nn.Sequential(
+            nn.Linear(36864, 3)
+        )
 
-          nn.Flatten(),
-          nn.Linear(320000, 512), # 512 x 25 x 25 = 320000
-          nn.ReLU(inplace=True),
-          nn.Dropout2d(p=0.2),
-          nn.Linear(512, 256),
-          nn.ReLU(inplace=True),
-          nn.Dropout2d(p=0.2),
-          nn.Linear(256, 3))
-
+    # forward pass to readjust weights  
     def forward(self, x):
-        return self.network(x)
+        x = self.cnn_layers(x)
+        x = x.view(x.size(0), -1)
+        x = self.linear_layers(x)
+        return x
 
 
 # In[7]:
@@ -357,8 +357,15 @@ def run_program(
     generate_classification_report_and_plot_confusion_matrix(model, "Validation", validation_loader)
 
 
-# In[18]:
+# In[19]:
 
 
-run_program(is_data_preloaded=False, is_model_saved=True)
+# If the value of is_data_preloaded
+# is True which means program reads pre-loaded data from the directory, otherwise it generates
+# the data and loads it. While the True value of is_model_saved parameter indicates that
+# program reads model from the directory which is pre stored and if the parameter is set as 
+# False then it creates new model, trains the model and then it becomes available for 
+# further use such as in evaluation process.
+
+run_program(is_data_preloaded=True, is_model_saved=True)
 
