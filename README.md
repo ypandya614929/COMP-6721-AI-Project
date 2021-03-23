@@ -1,7 +1,7 @@
 # COMP-6721-AI-Project
 COMP-6721-AI-Project
 
-## To setup virtualenv if not already if running as .py file
+## To setup virtualenv before running as .py file
     
     virtualenv -p python3.6 env
     source env/bin/activate
