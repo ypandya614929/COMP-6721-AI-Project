@@ -29,3 +29,6 @@ program reads **pre-trained model** from the directory which is pre stored and i
 **False** then it **creates new model, trains the model** and then it becomes available for further use such as in evaluation process.
 
 **run_program(is_data_preloaded=True, is_model_saved=True)**
+
+### Note: 
+**Please follow comments at import level and at the execution function related to local execution of the program before proceeding.**
