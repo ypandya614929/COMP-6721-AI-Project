@@ -31,4 +31,7 @@ program reads **pre-trained model** from the directory which is pre stored and i
 **run_program(is_data_preloaded=True, is_model_saved=True)**
 
 ### Note: 
+
+**Whole dataset of images is too large to upload, as it is kept on google drive. Please send an email at yashp6149@gmail.com to get access.**
+
 **Please follow comments at import level and at the execution function related to local execution of the program before proceeding.**
