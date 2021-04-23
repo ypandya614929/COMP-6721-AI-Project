@@ -14,12 +14,17 @@ COMP-6721-AI-Project
     need to install it using pip/conda.
     
 - **Dataset** folder contains all the images for training and testing dataset.
-- Dataset/**ai-project-1** which is **pre-trained model**.
-- Dataset/**processed_data** which is **pre-processed dataset** as **npy** file.
+- Dataset/**ai-project-part-2** which is **pre-trained model**.
+- Dataset/**processed_data_part2** which is Training **pre-processed dataset** as **npy** file.
+- TestDataset/**test_processed_data_part2** which is Testing **pre-processed dataset** as **npy** file.
+
+- **Bias Dataseparation for Testing**
+- TestDataset/**test_female_processed_data_part2** which is Female Testing **pre-processed dataset** as **npy** file.
+- TestDataset/**test_male_processed_data_part2** which is Male Testing **pre-processed dataset** as **npy** file.
 
 ## Google Colab Execution
 
-Please send an email at yashp6149@gmail.com to get execution environment access and click [here](https://colab.research.google.com/drive/1zqfS3bsUsyRtrd5FbzsXVMOLYhDcDM4Q#scrollTo=6Rdb5-xERu8u) to go to the execution environment.
+Please send an email at yashp6149@gmail.com to get execution environment access and click [here](https://colab.research.google.com/drive/18F2MpN3re2238Xx2RfTf_ZiddrIkDMf-) to go to the execution environment.
 
 ## Run Program
 
